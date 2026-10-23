@@ -1,0 +1,271 @@
+
+ /----------------------------------------------------------------------------\
+ |  yosys -- Yosys Open SYnthesis Suite                                       |
+ |  Copyright (C) 2012 - 2024  Claire Xenia Wolf <claire@yosyshq.com>         |
+ |  Distributed under an ISC-like license, type "license" to see terms        |
+ \----------------------------------------------------------------------------/
+ Yosys 0.47+121 (git sha1 98b4affc4, g++ 13.2.0-23ubuntu4 -fPIC -O3)
+
+-- Running command `read_verilog keypad_lock.v; hierarchy -top keypad_lock; proc; opt; check; stat' --
+
+1. Executing Verilog-2005 frontend: keypad_lock.v
+Parsing Verilog input from `keypad_lock.v' to AST representation.
+Generating RTLIL representation for module `\keypad_lock'.
+Successfully finished Verilog frontend.
+
+2. Executing HIERARCHY pass (managing design hierarchy).
+
+2.1. Analyzing design hierarchy..
+Top module:  \keypad_lock
+
+2.2. Analyzing design hierarchy..
+Top module:  \keypad_lock
+Removed 0 unused modules.
+
+3. Executing PROC pass (convert processes to netlists).
+
+3.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+3.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Marked 11 switch rules as full_case in process $proc$keypad_lock.v:34$1 in module keypad_lock.
+Removed a total of 0 dead cases.
+
+3.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 1 redundant assignment.
+Promoted 0 assignments to connections.
+
+3.4. Executing PROC_INIT pass (extract init attributes).
+
+3.5. Executing PROC_ARST pass (detect async resets in processes).
+Found async reset \rst_n in `\keypad_lock.$proc$keypad_lock.v:34$1'.
+
+3.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+<suppressed ~12 debug messages>
+
+3.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `\keypad_lock.$proc$keypad_lock.v:34$1'.
+     1/10: $0\wrong[0:0]
+     2/10: $0\timer[15:0]
+     3/10: $0\fail_count[1:0]
+     4/10: $0\digit_count[2:0]
+     5/10: $0\stored_code[15:0]
+     6/10: $0\entry[15:0]
+     7/10: $0\state[2:0]
+     8/10: $0\prog_active[0:0]
+     9/10: $0\lockout[0:0]
+    10/10: $0\unlock[0:0]
+
+3.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+
+3.9. Executing PROC_DFF pass (convert process syncs to FFs).
+Creating register for signal `\keypad_lock.\unlock' using process `\keypad_lock.$proc$keypad_lock.v:34$1'.
+  created $adff cell `$procdff$224' with positive edge clock and positive level reset.
+Creating register for signal `\keypad_lock.\lockout' using process `\keypad_lock.$proc$keypad_lock.v:34$1'.
+  created $adff cell `$procdff$229' with positive edge clock and positive level reset.
+Creating register for signal `\keypad_lock.\wrong' using process `\keypad_lock.$proc$keypad_lock.v:34$1'.
+  created $adff cell `$procdff$234' with positive edge clock and positive level reset.
+Creating register for signal `\keypad_lock.\prog_active' using process `\keypad_lock.$proc$keypad_lock.v:34$1'.
+  created $adff cell `$procdff$239' with positive edge clock and positive level reset.
+Creating register for signal `\keypad_lock.\state' using process `\keypad_lock.$proc$keypad_lock.v:34$1'.
+  created $adff cell `$procdff$244' with positive edge clock and positive level reset.
+Creating register for signal `\keypad_lock.\entry' using process `\keypad_lock.$proc$keypad_lock.v:34$1'.
+  created $adff cell `$procdff$249' with positive edge clock and positive level reset.
+Creating register for signal `\keypad_lock.\stored_code' using process `\keypad_lock.$proc$keypad_lock.v:34$1'.
+  created $adff cell `$procdff$254' with positive edge clock and positive level reset.
+Creating register for signal `\keypad_lock.\digit_count' using process `\keypad_lock.$proc$keypad_lock.v:34$1'.
+  created $adff cell `$procdff$259' with positive edge clock and positive level reset.
+Creating register for signal `\keypad_lock.\fail_count' using process `\keypad_lock.$proc$keypad_lock.v:34$1'.
+  created $adff cell `$procdff$264' with positive edge clock and positive level reset.
+Creating register for signal `\keypad_lock.\timer' using process `\keypad_lock.$proc$keypad_lock.v:34$1'.
+  created $adff cell `$procdff$269' with positive edge clock and positive level reset.
+
+3.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+3.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Found and cleaned up 12 empty switches in `\keypad_lock.$proc$keypad_lock.v:34$1'.
+Removing empty process `keypad_lock.$proc$keypad_lock.v:34$1'.
+Cleaned up 12 empty switches.
+
+3.12. Executing OPT_EXPR pass (perform const folding).
+Optimizing module keypad_lock.
+<suppressed ~26 debug messages>
+
+4. Executing OPT pass (performing simple optimizations).
+
+4.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module keypad_lock.
+
+4.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\keypad_lock'.
+<suppressed ~129 debug messages>
+Removed a total of 43 cells.
+
+4.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \keypad_lock..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~10 debug messages>
+
+4.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \keypad_lock.
+    New ctrl vector for $pmux cell $procmux$170: { $procmux$214_CMP $procmux$207_CMP $auto$opt_reduce.cc:137:opt_pmux$271 }
+    New ctrl vector for $pmux cell $procmux$205: { $procmux$218_CMP $procmux$214_CMP $procmux$207_CMP $auto$opt_reduce.cc:137:opt_pmux$273 }
+    New ctrl vector for $pmux cell $procmux$193: { $procmux$218_CMP $auto$opt_reduce.cc:137:opt_pmux$275 $procmux$206_CMP }
+  Optimizing cells in module \keypad_lock.
+Performed a total of 3 changes.
+
+4.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\keypad_lock'.
+<suppressed ~21 debug messages>
+Removed a total of 7 cells.
+
+4.6. Executing OPT_DFF pass (perform DFF optimizations).
+Adding EN signal on $procdff$254 ($adff) from module keypad_lock (D = { \entry [11:0] \key }, Q = \stored_code).
+Adding EN signal on $procdff$229 ($adff) from module keypad_lock (D = $procmux$193_Y, Q = \lockout).
+Adding EN signal on $procdff$249 ($adff) from module keypad_lock (D = $procmux$109_Y, Q = \entry).
+Adding EN signal on $procdff$244 ($adff) from module keypad_lock (D = $procmux$135_Y, Q = \state).
+Adding EN signal on $procdff$259 ($adff) from module keypad_lock (D = $procmux$68_Y, Q = \digit_count).
+Adding EN signal on $procdff$264 ($adff) from module keypad_lock (D = $procmux$60_Y, Q = \fail_count).
+Adding EN signal on $procdff$239 ($adff) from module keypad_lock (D = $procmux$170_Y, Q = \prog_active).
+Adding EN signal on $procdff$269 ($adff) from module keypad_lock (D = $procmux$27_Y, Q = \timer).
+Adding EN signal on $procdff$224 ($adff) from module keypad_lock (D = $procmux$205_Y, Q = \unlock).
+
+4.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \keypad_lock..
+Removed 7 unused cells and 128 unused wires.
+<suppressed ~8 debug messages>
+
+4.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module keypad_lock.
+<suppressed ~6 debug messages>
+
+4.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+4.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \keypad_lock..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~12 debug messages>
+
+4.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \keypad_lock.
+    New ctrl vector for $pmux cell $procmux$68: { $procmux$124_CMP $procmux$123_CMP $auto$opt_reduce.cc:137:opt_pmux$358 $procmux$110_CMP }
+  Optimizing cells in module \keypad_lock.
+Performed a total of 1 changes.
+
+4.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\keypad_lock'.
+<suppressed ~27 debug messages>
+Removed a total of 9 cells.
+
+4.13. Executing OPT_DFF pass (perform DFF optimizations).
+Adding EN signal on $auto$ff.cc:266:slice$318 ($adffe) from module keypad_lock (D = $0\digit_count[2:0], Q = \digit_count).
+
+4.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \keypad_lock..
+Removed 0 unused cells and 9 unused wires.
+<suppressed ~1 debug messages>
+
+4.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module keypad_lock.
+
+4.16. Rerunning OPT passes. (Maybe there is more to do..)
+
+4.17. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \keypad_lock..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~12 debug messages>
+
+4.18. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \keypad_lock.
+    New input vector for $reduce_and cell $auto$opt_dff.cc:220:make_patterns_logic$363: { $auto$opt_dff.cc:194:make_patterns_logic$360 $auto$opt_dff.cc:194:make_patterns_logic$299 $auto$opt_dff.cc:194:make_patterns_logic$297 $auto$opt_dff.cc:194:make_patterns_logic$295 }
+  Optimizing cells in module \keypad_lock.
+Performed a total of 1 changes.
+
+4.19. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\keypad_lock'.
+Removed a total of 0 cells.
+
+4.20. Executing OPT_DFF pass (perform DFF optimizations).
+
+4.21. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \keypad_lock..
+Removed 1 unused cells and 1 unused wires.
+<suppressed ~2 debug messages>
+
+4.22. Executing OPT_EXPR pass (perform const folding).
+Optimizing module keypad_lock.
+
+4.23. Rerunning OPT passes. (Maybe there is more to do..)
+
+4.24. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \keypad_lock..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~12 debug messages>
+
+4.25. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \keypad_lock.
+Performed a total of 0 changes.
+
+4.26. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\keypad_lock'.
+Removed a total of 0 cells.
+
+4.27. Executing OPT_DFF pass (perform DFF optimizations).
+
+4.28. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \keypad_lock..
+
+4.29. Executing OPT_EXPR pass (perform const folding).
+Optimizing module keypad_lock.
+
+4.30. Finished OPT passes. (There is nothing left to do.)
+
+5. Executing CHECK pass (checking for obvious problems).
+Checking module keypad_lock...
+Found and reported 0 problems.
+
+6. Printing statistics.
+
+=== keypad_lock ===
+
+   Number of wires:                110
+   Number of wire bits:            472
+   Number of public wires:          17
+   Number of public wire bits:      85
+   Number of ports:                 10
+   Number of port bits:             13
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                103
+     $add                            2
+     $adff                           1
+     $adffe                          9
+     $eq                             7
+     $le                             1
+     $logic_not                      1
+     $mux                           43
+     $ne                            14
+     $not                            1
+     $pmux                           7
+     $reduce_and                     8
+     $reduce_bool                    5
+     $reduce_or                      3
+     $sub                            1
+
+End of script. Logfile hash: 334db11f44, CPU: user 0.04s system 0.01s, MEM: 17.50 MB peak
+Yosys 0.47+121 (git sha1 98b4affc4, g++ 13.2.0-23ubuntu4 -fPIC -O3)
+Time spent: 25% 6x opt_expr (0 sec), 15% 4x opt_clean (0 sec), ...
